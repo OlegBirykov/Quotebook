@@ -1,0 +1,13 @@
+body {
+  background: black;
+  color: #d0d0d0;
+}
+
+.main {
+  margin: 50px 5% 0 5%;
+  border: 3px solid #d0d0d0;
+}
+
+.title {
+  text-align: center;
+}
