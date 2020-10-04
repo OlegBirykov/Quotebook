@@ -130,9 +130,7 @@ form button:hover {
 }
 
 .add-form button {
-  width: 10%;
-  min-width: 80px;
-  max-width: 100px;
+  width: 100px;
 }
 
 .login-form {
