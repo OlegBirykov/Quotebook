@@ -2,6 +2,7 @@
   box-sizing: border-box;
   margin: 0;
   padding: 0;
+  border: none;
 
   font-family: "Times New Roman", serif;
 }
@@ -135,6 +136,33 @@ form button:hover {
   margin: 20px auto;
   padding: 20px;
   border: 1px solid #d0d0d0;  
+}
+
+.filter-list {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.checkbox {
+  display: flex;
+  width: 200px;
+  align-items: center;
+  padding: 10px;
+}
+
+.box {
+  width: 1.4em;
+  height: 1.4em;
+  margin-right: 5px;
+  text-align: center;
+  font-size: 1em;
+  color: black;
+  background-color: #d0d0d0; 
+  cursor: pointer;
+}
+
+.box:hover {
+  background-color: #ff8800;
 }
 
 .add-form {

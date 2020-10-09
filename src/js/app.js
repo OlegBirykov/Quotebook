@@ -3,6 +3,7 @@ const header = document.querySelector('.header');
 const filterButton = document.querySelector('.filter-button');
 const exitButton = document.querySelector('.exit-button');
 const filterForm = document.querySelector('.filter-form');
+const filterList = document.querySelector('.filter-list');
 const quotesContainer = document.querySelector('.quotes-container');
 const loginForm = document.querySelector('.login-form');
 const addForm = document.querySelector('.add-form');
@@ -21,7 +22,26 @@ function createQuoteList(html) {
     return 0;
   });
 
-  quotes.forEach((item) => quotesContainer.appendChild(item.element));
+  const tags = new Set();
+  quotes.forEach((item) => {
+    quotesContainer.appendChild(item.element);
+    tags.add(item.tag);
+  });
+
+  filterList.innerHTML = '';
+  tags.forEach((item) => {
+    filterList.innerHTML += `<div class="checkbox">
+  <p class="box">&#x274C;</p>
+  <p class="tag">${item}</p>
+</div> 
+    `;
+  });
+
+  for (const item of filterList.querySelectorAll('.box')) {
+    item.addEventListener('click', () => {
+      item.innerText = !item.innerText ? '\u274C' : '';
+    });
+  }
 }
 
 function load() {
@@ -175,6 +195,22 @@ function clearQuote(event) {
 function setFilter(event) {
   event.preventDefault();
 
+  const tags = new Set();
+  for (const item of filterList.querySelectorAll('.box')) {
+    if (item.innerText) {
+      tags.add(item.parentElement.querySelector('.tag').innerText);
+    }
+  }
+
+  for (const quote of quotesContainer.querySelectorAll('.quote')) {
+    const tag = quote.querySelector('h3').innerText.slice(11);
+    if (tags.has(tag)) {
+      quote.classList.remove('hide');
+    } else {
+      quote.classList.add('hide');
+    }
+  }
+
   filterForm.classList.remove('active');
   filterButton.querySelector('.header-icon').classList.add('header-icon-active');
 }
@@ -182,11 +218,23 @@ function setFilter(event) {
 function clearFilter(event) {
   event.preventDefault();
 
+  for (const item of filterList.querySelectorAll('.box')) {
+    item.innerText = '\u274C';
+  }
+
+  for (const quote of quotesContainer.querySelectorAll('.quote')) {
+    quote.classList.remove('hide');
+  }
+
   filterForm.classList.remove('active');
   filterButton.querySelector('.header-icon').classList.remove('header-icon-active');
 }
 
 filterButton.addEventListener('click', () => {
+  if (addForm.classList.contains('active')) {
+    alert('Фильтрация по категориям работает только в режиме просмотра');
+    return;
+  }
   filterForm.classList.add('active');
 });
 
