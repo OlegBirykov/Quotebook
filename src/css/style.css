@@ -22,27 +22,31 @@ body {
 
 .header-container {
   display: flex;
-  justify-content: flex-end;
+  justify-content: space-between;
   padding: 10px 0;
 }
 
-.exit-link {
+.filter-button {
   display: block;  
 }
 
-.exit-icon {
+.exit-button {
+  display: block;  
+}
+
+.header-icon {
   display: block;
   fill: #d0d0d0;
   width: auto;
   height: 40px;
 }
 
-.exit-icon:hover {
-  fill: #ff8800;
+.header-icon-active {
+  fill: #00ff00;
 }
 
-.main {
-
+.header-icon:hover {
+  fill: #ff8800;
 }
 
 .title {
@@ -126,6 +130,13 @@ form button:hover {
   cursor: pointer;
 }
 
+.filter-form {
+  display: none;
+  margin: 20px auto;
+  padding: 20px;
+  border: 1px solid #d0d0d0;  
+}
+
 .add-form {
   display: none;
   margin: 20px auto;
@@ -151,4 +162,8 @@ form button:hover {
 
 .active {
   display: block;
+}
+
+.hide {
+  display: none;
 }
